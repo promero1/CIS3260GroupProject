@@ -5,8 +5,10 @@
  * Lights - On/off
  * Toaster - on/off
  * Camera - on/off, zoom in/out
+ * Spotify - play song indicated by user
  *
  *User is prompted window to type in the command.
+ *
  */
 
 //import JOptionPane
