@@ -1,48 +1,80 @@
 /**
- * This class will is where the objects are created by commands and calls to the other classes. 
- * From the command line / JOptionPane window. 
+ * Group Project Jarvis Home systems control
  * 
- * Possibly an option menu will be displayed asking what Home System the user would like to control.
- * That will then send a call to one of the classes to enable another menu for that class.
- * 
- * A loop should be put here, to return to the main menu until the user exits the program completely. 
- * 
- * Ex: 
- * 
- * What home system would you like to control?
- * 1.Lights
- * 2.Doors
- * 3.Spotify
- * 4... so on
- * 7. Exit Program (ends main option loop / program)
- * @author promero
- * 
+ * Currently Jarvis can control:
+ * Lights - On/off
+ * Toaster - on/off
+ * Camera - on/off, zoom in/out
  *
+ *User is prompted window to type in the command.
  */
 
 //import JOptionPane
 import javax.swing.JOptionPane;
 
+
 public class myClass {
 
 	public static void main(String[] args) 
 	{
-		//Presents window to display the user options, stores in a 'UserOption' string variable
-		int userOption = Integer.parseInt(JOptionPane.showInputDialog(null, "What home system would you like to control?\n"
-				+ "1.Lights\n" + "2.Doors\n" + "3.Spotify\n" + "4.Cameras\n" + " 5.Toaster\n" + "6.Oven\n" + "7.Exit\n"));
-		
-		if (userOption == 1)
-		{
-		lights.main(args);
-		}
-		if (userOption == 2)
-		{
-			
-		}
-		if (userOption == 3)
-		{
-			
-		}
+		myClass.menu();
 	}
-
+	
+	public static void menu()
+	{
+		String command =(JOptionPane.showInputDialog(null, "Hello, my name is J.A.R.V.I.S! Please type a command for your home system below:", "Home Systems Menu",JOptionPane.PLAIN_MESSAGE));
+		myClass.decisions(command);
+	}
+	
+	public static void decisions(String command)
+	{
+		command = command.toLowerCase();
+		
+		if(command.contains("lights") && command.contains("on"))
+		{
+			lights.lightSwitch(true);
+			myClass.menu();
+	    }
+		if(command.contains("lights") && command.contains("off"))
+		{
+			lights.lightSwitch(false);
+			myClass.menu();
+		}
+		if(command.contains("cameras") && command.contains("on"))
+		{
+			cameras.cameraSwitch(true);
+			myClass.menu();
+	    }
+		if(command.contains("cameras") && command.contains("off"))
+		{
+			cameras.cameraSwitch(false);
+			myClass.menu();
+	    }
+		if(command.contains("cameras") && command.contains("zoom") && command.contains("in"))
+		{
+			cameras.zoomIn();
+			myClass.menu();
+	    }
+		if(command.contains("cameras") && command.contains("zoom") && command.contains("out"))
+		{
+			cameras.zoomOut();
+			myClass.menu();
+	    }
+		if(command.contains("toaster") && command.contains("on"))
+		{
+			toaster.toasterSwitch(true);
+			myClass.menu();
+		}
+		if(command.contains("toaster") && command.contains("off"))
+		{
+			toaster.toasterSwitch(false);
+			myClass.menu();
+		}
+		if(command.contains("play") && command.contains("music") || command.contains("spotify"))
+		{
+			spotify.spotifySong();
+			myClass.menu();
+		}
+		
+	}
 }
