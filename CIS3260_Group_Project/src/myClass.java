@@ -1,14 +1,26 @@
 /**
- * Group Project Jarvis Home systems control
+ * Group Project Jarvis Home systems control 
+ * ____________________
+ * GROUP6
+ * ____________________
+ * Patrick Romero
+ * Ashley Yonika
+ * Waymon Martin, Jr
+ * Michael-bret Hodges
+ * Michael Bogan
+ * ____________________
  * 
- * Currently Jarvis can control:
+ * Currently JARVIS can control:
+ * -------------------------------
  * Lights - On/off
- * Toaster - on/off
+ * Toaster - on/off, set temperature level.
  * Camera - on/off, zoom in/out
  * Spotify - play song indicated by user
+ * Oven - on/off, set temperature
+ * Garage Door - open/close
  *
  *User is prompted window to type in the command.
- *
+ *---------------------------------
  */
 
 //import JOptionPane
@@ -19,18 +31,26 @@ public class myClass {
 
 	public static void main(String[] args) 
 	{
+		// calls the menu method
 		myClass.menu();
 	}
 	
+	//menu method, prompts the user to enter a command. That command is then passed to the decisions method.
 	public static void menu()
 	{
-		String command =(JOptionPane.showInputDialog(null, "Hello, my name is J.A.R.V.I.S! Please type a command for your home system below:", "Home Systems Menu",JOptionPane.PLAIN_MESSAGE));
+		//Main menu display, prompts user to input a command.
+		String command =(JOptionPane.showInputDialog(null, "Hello, my name is J.A.R.V.I.S! \nPlease type a command for your home system below:", "Home Systems Menu",JOptionPane.PLAIN_MESSAGE));
+		//calls the decisions method
 		myClass.decisions(command);
 	}
-	
+	// decisions method, takes in a string which is the command from the user. 
 	public static void decisions(String command)
 	{
+		//takes the command and sets it to lower case for use within this method.
 		command = command.toLowerCase();
+		
+		/*if statements, defined to take words contained within the command to call the proper class/method.
+		each if statement, calls the menu method to return to*/
 		
 		if(command.contains("lights") && command.contains("on"))
 		{
@@ -44,22 +64,22 @@ public class myClass {
 		}
 		if(command.contains("cameras") && command.contains("on"))
 		{
-			cameras.cameraSwitch(true);
+			camera.cameraSwitch(true);
 			myClass.menu();
 	    }
 		if(command.contains("cameras") && command.contains("off"))
 		{
-			cameras.cameraSwitch(false);
+			camera.cameraSwitch(false);
 			myClass.menu();
 	    }
-		if(command.contains("cameras") && command.contains("zoom") && command.contains("in"))
+		if(command.contains("camera") && command.contains("zoom") && command.contains("in"))
 		{
-			cameras.zoomIn();
+			camera.zoomIn();
 			myClass.menu();
 	    }
-		if(command.contains("cameras") && command.contains("zoom") && command.contains("out"))
+		if(command.contains("camera") && command.contains("zoom") && command.contains("out"))
 		{
-			cameras.zoomOut();
+			camera.zoomOut();
 			myClass.menu();
 	    }
 		if(command.contains("toaster") && command.contains("on"))
@@ -72,11 +92,36 @@ public class myClass {
 			toaster.toasterSwitch(false);
 			myClass.menu();
 		}
-		if(command.contains("play") && command.contains("music") || command.contains("spotify"))
+		if(command.contains("play") || command.contains("music") || command.contains("spotify"))
 		{
 			spotify.spotifySong();
 			myClass.menu();
 		}
-		
+		if(command.contains("garage") && command.contains("open"))
+		{
+			garage.openClose(true);
+			myClass.menu();
+		}
+		if(command.contains("garage") && command.contains("close"))
+		{
+			garage.openClose(false);
+			myClass.menu();
+		}
+		if(command.contains("oven") && command.contains("on"))
+		{
+			oven.onOff(true);
+			myClass.menu();
+		}
+		if(command.contains("oven") && command.contains("off"))
+		{
+			oven.onOff(false);
+			myClass.menu();
+		}
+		//if none of the commands match then it will output the following message and call the menu class again. 
+		else
+		{
+			JOptionPane.showMessageDialog(null,"Please enter a valid command, try again!");
+			myClass.menu();
+		}
 	}
 }
