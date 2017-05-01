@@ -10,10 +10,10 @@
  * Michael Bogan
  * ____________________
  * 
- * Currently JARVIS can control:
+ * Currently JARVIS can control via text input:
  * -------------------------------
  * Lights - On/off
- * Toaster - on/off, set temperature level.
+ * Toaster - on/off, set level.
  * Camera - on/off, zoom in/out
  * Spotify - play song indicated by user
  * Oven - on/off, set temperature
@@ -40,10 +40,10 @@ public class myClass {
 	{
 		//Main menu display, prompts user to input a command.
 		String command =(JOptionPane.showInputDialog(null, "Hello, my name is J.A.R.V.I.S! \nPlease type a command for your home system below:", "Home Systems Menu",JOptionPane.PLAIN_MESSAGE));
-		//calls the decisions method
+		//calls the decisions method, passes command string to it
 		myClass.decisions(command);
 	}
-	// decisions method, takes in a string which is the command from the user. 
+	// decisions method, takes in a string / command from the user. 
 	public static void decisions(String command)
 	{
 		//takes the command and sets it to lower case for use within this method.
@@ -62,12 +62,12 @@ public class myClass {
 			lights.lightSwitch(false);
 			myClass.menu();
 		}
-		if(command.contains("cameras") && command.contains("on"))
+		if(command.contains("camera") && command.contains("on"))
 		{
 			camera.cameraSwitch(true);
 			myClass.menu();
 	    }
-		if(command.contains("cameras") && command.contains("off"))
+		if(command.contains("camera") && command.contains("off"))
 		{
 			camera.cameraSwitch(false);
 			myClass.menu();
